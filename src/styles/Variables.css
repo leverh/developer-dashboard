@@ -1,0 +1,30 @@
+:root {
+  /* Colors */
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --accent-color: #10b981;
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* Typography */
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --border-radius: 0.5rem;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
