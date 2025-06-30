@@ -1,35 +1,27 @@
-import { useState, useEffect } from 'react'
 import GitHubStats from './components/GitHubStats'
 import ProjectsList from './components/ProjectsList'
 import ActivityFeed from './components/ActivityFeed'
 import ProfileOverview from './components/ProfileOverview'
+import DeploymentOverview from './components/DeploymentOverview'
+import AnalyticsDashboard from './components/AnalyticsDashboard'
+import { useGitHub } from './hooks/useGitHub'
 
 function App() {
-  const [githubData, setGithubData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  // GitHub API
-  const fetchGitHubData = async () => {
-    setLoading(true)
-    try {
-      setLoading(false)
-    } catch (err) {
-      setError(err.message)
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    // fetchGitHubData()
-    setLoading(false) // For now stop loading
-  }, [])
+  const username = import.meta.env.VITE_GITHUB_USERNAME
+  const appName = import.meta.env.VITE_APP_NAME || 'Developer Dashboard'
+  
+  const { data: githubData, loading, error, refreshData, lastFetch } = useGitHub(username)
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Developer Dashboard</h1>
+        <h1>{appName}</h1>
         <p>Your development command center</p>
+        {lastFetch && (
+          <p className="last-update">
+            Last updated: {lastFetch.toLocaleTimeString()}
+          </p>
+        )}
       </header>
 
       <main className="dashboard-main">
@@ -38,7 +30,7 @@ function App() {
         {error && (
           <div className="error">
             <p>Error: {error}</p>
-            <button onClick={fetchGitHubData}>Retry</button>
+            <button onClick={refreshData}>Retry</button>
           </div>
         )}
 
@@ -49,7 +41,15 @@ function App() {
             </section>
 
             <section className="stats-section">
-              <GitHubStats data={githubData} />
+              <GitHubStats data={githubData} onRefresh={refreshData} />
+            </section>
+
+            <section className="deployments-section">
+              <DeploymentOverview />
+            </section>
+
+            <section className="analytics-section">
+              <AnalyticsDashboard githubData={githubData} />
             </section>
 
             <section className="projects-section">

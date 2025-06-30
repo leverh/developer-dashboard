@@ -1,42 +1,396 @@
-#root {
-  max-width: 1280px;
+/* CSS Variables */
+:root {
+  /* === COLORS === */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-900: #1e3a8a;
+
+  --secondary-50: #f8fafc;
+  --secondary-100: #f1f5f9;
+  --secondary-200: #e2e8f0;
+  --secondary-300: #cbd5e1;
+  --secondary-400: #94a3b8;
+  --secondary-500: #64748b;
+  --secondary-600: #475569;
+  --secondary-700: #334155;
+  --secondary-800: #1e293b;
+  --secondary-900: #0f172a;
+
+  --success-50: #f0fdf4;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+
+  --warning-50: #fffbeb;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+
+  --error-50: #fef2f2;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+
+  /* === THEME COLORS === */
+  --bg-primary: #ffffff;
+  --bg-secondary: var(--secondary-50);
+  --bg-tertiary: var(--secondary-100);
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+
+  --text-primary: var(--secondary-900);
+  --text-secondary: var(--secondary-600);
+  --text-tertiary: var(--secondary-500);
+  --text-inverse: #ffffff;
+
+  --border-light: var(--secondary-200);
+  --border-medium: var(--secondary-300);
+  --border-strong: var(--secondary-400);
+
+  /* === GRADIENTS === */
+  --gradient-primary: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-100) 0%, var(--secondary-200) 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+
+  /* === SPACING === */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+
+  /* === TYPOGRAPHY === */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* === LAYOUT === */
+  --container-max-width: 1400px;
+  --header-height: 80px;
+  --sidebar-width: 280px;
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+
+  /* === ANIMATIONS === */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* === Z-INDEX === */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+}
+
+/* === BASE STYLES === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === DASHBOARD LAYOUT === */
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+}
+
+.dashboard-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  padding: var(--space-6) var(--space-8);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.dashboard-header h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboard-header p {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.last-update {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  margin-top: var(--space-2);
+  font-weight: var(--font-weight-normal);
+}
+
+.dashboard-main {
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: var(--space-8);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* === LOADING & ERROR STATES === */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-20);
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.loading::before {
+  content: '⚡';
+  margin-right: var(--space-3);
+  animation: pulse 2s infinite;
+}
+
+.error {
+  background: var(--error-50);
+  border: 1px solid var(--error-500);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-6);
+  margin: var(--space-4) 0;
+}
+
+.error p {
+  color: var(--error-600);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-4);
+}
+
+.error button {
+  background: var(--error-500);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.error button:hover {
+  background: var(--error-600);
+  transform: translateY(-1px);
+}
+
+/* === SECTION STYLES === */
+.profile-section,
+.stats-section,
+.deployments-section,
+.analytics-section,
+.projects-section,
+.activity-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-section::before,
+.stats-section::before,
+.deployments-section::before,
+.analytics-section::before,
+.projects-section::before,
+.activity-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+}
+
+.profile-section:hover,
+.stats-section:hover,
+.deployments-section:hover,
+.analytics-section:hover,
+.projects-section:hover,
+.activity-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* === SPECIAL LAYOUT OVERRIDES === */
+.analytics-section {
+  grid-column: 1 / -1; /* Full width */
+  max-width: none;
+}
+
+.deployments-section {
+  grid-column: 1 / -1; /* Full width */
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
   }
-  to {
-    transform: rotate(360deg);
+  
+  .dashboard-main {
+    padding: var(--space-6);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: var(--space-4) var(--space-6);
+  }
+  
+  .dashboard-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .dashboard-main {
+    padding: var(--space-4);
+  }
+  
+  .profile-section,
+  .stats-section,
+  .deployments-section,
+  .analytics-section,
+  .projects-section,
+  .activity-section {
+    padding: var(--space-6);
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 480px) {
+  .dashboard-header {
+    padding: var(--space-4);
+  }
+  
+  .dashboard-header h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .dashboard-main {
+    padding: var(--space-3);
+  }
+  
+  .profile-section,
+  .stats-section,
+  .deployments-section,
+  .analytics-section,
+  .projects-section,
+  .activity-section {
+    padding: var(--space-4);
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* === ANIMATIONS === */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Add fade-in animation to sections */
+.profile-section,
+.stats-section,
+.deployments-section,
+.analytics-section,
+.projects-section,
+.activity-section {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger the animations */
+.profile-section { animation-delay: 0.1s; }
+.stats-section { animation-delay: 0.2s; }
+.deployments-section { animation-delay: 0.3s; }
+.analytics-section { animation-delay: 0.4s; }
+.projects-section { animation-delay: 0.5s; }
+.activity-section { animation-delay: 0.6s; }
