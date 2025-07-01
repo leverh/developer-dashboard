@@ -255,6 +255,10 @@ This project is licensed under the MIT License. Copy or share - I really don't c
 
 React, Vite, Recharts, GitHub Netlify and Vercel API's.
 
+## Attributions
+
+Favicon by [Vector Bazar - Flaticon](https://www.flaticon.com/free-icons/layout)
+
 
 ## 🌟 Show Your Support
 

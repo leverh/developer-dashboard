@@ -303,6 +303,24 @@
   box-shadow: var(--shadow-sm);
 }
 
+[data-theme="dark"] .skill-tag:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-300);
+}
+
+[data-theme="dark"] .contact-link:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-300);
+}
+
+[data-theme="dark"] .skill-tag:hover .skill-name {
+  color: var(--primary-800);
+}
+
+[data-theme="dark"] .contact-link:hover .contact-platform {
+  color: var(--primary-800);
+}
+
 /* === MOBILE THEME MENU === */
 @media (max-width: 768px) {
   .theme-menu-container {
@@ -557,6 +575,16 @@
   
   .theme-toggle {
     display: none;
+  }
+
+  .contact-link {
+    break-inside: avoid;
+  }
+  
+  .skill-tag:hover,
+  .contact-link:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 

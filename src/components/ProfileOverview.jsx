@@ -1,3 +1,5 @@
+import ProfileEnhancements from './ProfileEnhancements';
+
 const ProfileOverview = ({ data }) => {
   const profile = data?.profile
   const stats = data?.stats
@@ -87,6 +89,7 @@ const ProfileOverview = ({ data }) => {
           <span>All systems operational</span>
         </div>
       </div>
+      <ProfileEnhancements />
     </div>
   )
 }
