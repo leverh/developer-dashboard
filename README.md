@@ -269,7 +269,7 @@ If you find this project useful, please consider:
 ---
 
 ## Links
-- **Deployed Version**: [Developer Dashboard](https://pixelsummit-storybook.netlify.app/) 
+- **Deployed Version**: [Developer Dashboard](https://developersdashboard.netlify.app/) 
 - **Portfolio Website**: [PixelSummit](https://pixelsummit.dev/)
 - **GitHub**: [GitHub](https://github.com/leverh/developer-dashboard)
 - **Email**: contact@pixelsummit.dev
