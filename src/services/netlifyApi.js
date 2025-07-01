@@ -37,7 +37,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get specific site details
+  // Specific site details
   async getSite(token, siteId) {
     try {
       const response = await fetch(`${NETLIFY_BASE_URL}/sites/${siteId}`, {
@@ -50,7 +50,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get deployments for a site
+  // Deployments for a site
   async getDeployments(token, siteId, options = {}) {
     const { per_page = 10, page = 1 } = options
     
@@ -71,7 +71,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get build hooks for a site
+  // Build hooks for a site
   async getBuildHooks(token, siteId) {
     try {
       const response = await fetch(
@@ -85,7 +85,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get forms for a site
+  // Forms for a site
   async getForms(token, siteId) {
     try {
       const response = await fetch(
@@ -99,7 +99,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get form submissions
+  // Form submissions
   async getFormSubmissions(token, formId, options = {}) {
     const { per_page = 20 } = options
     
@@ -119,7 +119,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get account information
+  // Account information
   async getAccount(token) {
     try {
       const response = await fetch(`${NETLIFY_BASE_URL}/accounts`, {
@@ -133,7 +133,7 @@ export const netlifyApi = {
     }
   },
 
-  // Get comprehensive dashboard data
+  // Dashboard data
   async getDashboardData(token) {
     try {
       const [sites, account] = await Promise.all([
@@ -141,7 +141,7 @@ export const netlifyApi = {
         this.getAccount(token)
       ])
 
-      // Get deployment data for each site
+      // Deployment data for each site
       const sitesWithDeployments = await Promise.all(
         sites.slice(0, 5).map(async (site) => {
           try {
@@ -164,7 +164,7 @@ export const netlifyApi = {
         })
       )
 
-      // Calculate summary statistics
+      // Summary statistics
       const totalDeployments = sitesWithDeployments.reduce(
         (sum, site) => sum + (site.recent_deployments?.length || 0), 0
       )

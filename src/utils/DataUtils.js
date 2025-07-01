@@ -293,7 +293,7 @@ export const generateColorPalette = (count) => {
   // Generate additional colors if needed
   const additionalColors = []
   for (let i = baseColors.length; i < count; i++) {
-    const hue = (i * 137.508) % 360 // Golden angle approximation
+    const hue = (i * 137.508) % 360
     additionalColors.push(`hsl(${hue}, 70%, 50%)`)
   }
   

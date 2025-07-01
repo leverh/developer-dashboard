@@ -1,0 +1,522 @@
+/* === SCROLL TO TOP === */
+.scroll-to-top-container {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-fixed);
+  
+  width: 60px;
+  height: 60px;
+  
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.scroll-progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--primary-500);
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  stroke: var(--border-medium);
+  opacity: 0.3;
+}
+
+.progress-ring-fill {
+  stroke: var(--primary-500);
+  transition: stroke-dashoffset 0.3s ease;
+  filter: drop-shadow(0 0 4px var(--primary-500));
+}
+
+.scroll-to-top-btn {
+  position: absolute;
+  inset: 8px;
+  
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-lg);
+  
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-500);
+  background: var(--primary-50);
+  color: var(--primary-600);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.scroll-icon {
+  font-weight: bold;
+  transition: transform var(--transition-fast);
+}
+
+.scroll-to-top-btn:hover .scroll-icon {
+  transform: translateY(-2px);
+}
+
+.scroll-percentage {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: var(--space-3);
+  
+  background: var(--primary-500);
+  color: white;
+  
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* font-size: var(--font-size-xs); */
+  font-size: 0.60rem;
+  font-weight: var(--font-weight-bold);
+  
+  border: 2px solid var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+/* === SCROLL NAVIGATION === */
+.scroll-navigation {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-fixed);
+  
+  width: 64px;
+  height: 64px;
+  
+  animation: slideInRight 0.4s ease-out;
+}
+
+.scroll-nav-btn {
+  position: absolute;
+  inset: 6px;
+  
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-lg);
+  
+  font-size: var(--font-size-lg);
+  color: white;
+}
+
+.scroll-nav-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
+.scroll-nav-btn:active {
+  transform: translateY(-1px) scale(1.05);
+}
+
+.nav-icon {
+  transition: all var(--transition-normal);
+}
+
+.scroll-nav-btn[aria-expanded="true"] .nav-icon {
+  transform: rotate(180deg);
+}
+
+/* === QUICK ACTIONS === */
+.scroll-quick-actions {
+  position: absolute;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  display: flex;
+  gap: var(--space-2);
+  
+  opacity: 0;
+  transform: translateY(-50%) translateX(20px);
+  transition: all var(--transition-normal);
+  pointer-events: none;
+}
+
+.scroll-quick-actions.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
+}
+
+.quick-action-btn {
+  width: 40px;
+  height: 40px;
+  
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.quick-action-btn:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-500);
+  color: var(--primary-600);
+}
+
+.quick-action-btn.top:hover {
+  background: var(--success-50);
+  border-color: var(--success-500);
+  color: var(--success-600);
+}
+
+.quick-action-btn.bottom:hover {
+  background: var(--warning-50);
+  border-color: var(--warning-500);
+  color: var(--warning-600);
+}
+
+/* === NAVIGATION MENU === */
+.scroll-menu {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  
+  width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  
+  animation: slideInUp 0.3s ease-out;
+  transform-origin: bottom right;
+}
+
+.scroll-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-fixed) - 1);
+  background: transparent;
+}
+
+.scroll-menu-header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.scroll-menu-header h4 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.scroll-progress-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.scroll-menu-sections {
+  padding: var(--space-2);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.scroll-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-md);
+  
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.scroll-menu-item:hover {
+  background: var(--bg-secondary);
+  transform: translateX(4px);
+}
+
+.scroll-menu-item.active {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  border: 1px solid var(--primary-200);
+}
+
+[data-theme="dark"] .scroll-menu-item.active {
+  background: var(--primary-100);
+  color: var(--primary-800);
+  border-color: var(--primary-300);
+}
+
+.section-icon {
+  font-size: var(--font-size-base);
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.section-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.current-indicator {
+  color: var(--primary-500);
+  font-size: var(--font-size-xs);
+  animation: pulse 2s infinite;
+}
+
+.scroll-menu-footer {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+}
+
+.scroll-shortcuts {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-snug);
+}
+
+.shortcut-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-right: var(--space-4);
+  margin-top: var(--space-1);
+}
+
+.scroll-shortcuts kbd {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--border-radius-sm);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-mono);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* === PROGRESS INDICATOR === */
+.scroll-progress-indicator {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  
+  background: var(--primary-500);
+  color: white;
+  
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  
+  border: 2px solid var(--bg-card);
+  box-shadow: var(--shadow-md);
+  
+  transition: all var(--transition-fast);
+}
+
+.scroll-navigation:hover .scroll-progress-indicator {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+/* === MOBILE RESPONSIVE === */
+@media (max-width: 768px) {
+  .scroll-to-top-container,
+  .scroll-navigation {
+    bottom: var(--space-4);
+    right: var(--space-4);
+    width: 56px;
+    height: 56px;
+  }
+  
+  .scroll-to-top-btn,
+  .scroll-nav-btn {
+    font-size: var(--font-size-lg);
+  }
+  
+  .scroll-menu {
+    right: -40px;
+    width: 260px;
+  }
+  
+  .scroll-quick-actions {
+    right: 65px;
+  }
+  
+  .quick-action-btn {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top-container,
+  .scroll-navigation {
+    bottom: var(--space-3);
+    right: var(--space-3);
+    width: 50px;
+    height: 50px;
+  }
+  
+  .scroll-menu {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+  
+  .scroll-menu-backdrop {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .scroll-quick-actions {
+    position: fixed;
+    bottom: 80px;
+    right: var(--space-3);
+    flex-direction: column;
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === THEME SPECIFIC ADJUSTMENTS === */
+[data-theme="dark"] .scroll-to-top-btn:hover,
+[data-theme="dark"] .quick-action-btn:hover {
+  background: var(--primary-100);
+}
+
+[data-theme="dark"] .progress-ring-fill {
+  filter: drop-shadow(0 0 6px var(--primary-400));
+}
+
+[data-theme="dark"] .scroll-nav-btn {
+  box-shadow: var(--shadow-xl), 0 0 20px rgba(96, 165, 250, 0.3);
+}
+
+[data-theme="dark"] .scroll-menu {
+  backdrop-filter: blur(10px);
+  background: rgba(30, 41, 59, 0.95);
+  border-color: var(--border-strong);
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top-container,
+  .scroll-navigation {
+    animation: none;
+  }
+  
+  .scroll-menu {
+    animation: none;
+  }
+  
+  .current-indicator {
+    animation: none;
+  }
+}
+
+/* Focus states */
+.scroll-to-top-btn:focus,
+.scroll-nav-btn:focus,
+.quick-action-btn:focus,
+.scroll-menu-item:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .scroll-to-top-btn,
+  .scroll-nav-btn,
+  .quick-action-btn {
+    border-width: 2px;
+  }
+  
+  .scroll-menu {
+    border-width: 2px;
+  }
+}

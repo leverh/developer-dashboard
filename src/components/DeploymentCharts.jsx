@@ -125,7 +125,7 @@ const DeploymentCharts = () => {
     }
     
     return buildData
-      .filter(item => item.buildTime > 0 && item.buildTime < 3600) // Filter realistic build times
+      .filter(item => item.buildTime > 0 && item.buildTime < 3600) // Realistic build times
       .sort((a, b) => b.buildTime - a.buildTime)
       .slice(0, 10)
   }

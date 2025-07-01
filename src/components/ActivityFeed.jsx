@@ -100,7 +100,7 @@ const ActivityFeed = ({ data }) => {
     return eventDate.toLocaleDateString()
   }
 
-  // Use real GitHub events if available, otherwise show placeholder
+  // Use real GitHub or placeholder
   const activities = data?.events 
     ? data.events.slice(0, 10).map(formatActivity)
     : [

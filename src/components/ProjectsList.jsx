@@ -1,7 +1,7 @@
 const ProjectsList = ({ data }) => {
   const repos = data?.repos || []
   
-  // Filter and sort repositories to show as "projects"
+  // Repositories to show as "projects"
   const projects = repos
     .filter(repo => !repo.fork) // Exclude forked repositories
     .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
@@ -31,7 +31,6 @@ const ProjectsList = ({ data }) => {
     const techs = []
     if (repo.language) techs.push(repo.language)
     
-    // Add some common tech based on repository topics or name patterns
     if (repo.topics) {
       repo.topics.slice(0, 3).forEach(topic => {
         if (!techs.includes(topic)) {
@@ -40,10 +39,10 @@ const ProjectsList = ({ data }) => {
       })
     }
     
-    return techs.slice(0, 4) // Limit to 4 tech tags
+    return techs.slice(0, 4)
   }
 
-  // Show placeholder if no GitHub data available
+  // Placeholder if no GitHub data available
   if (!data || repos.length === 0) {
     const placeholderProjects = [
       {

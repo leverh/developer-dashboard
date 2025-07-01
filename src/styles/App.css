@@ -1,124 +1,3 @@
-/* CSS Variables */
-:root {
-  /* === COLORS === */
-  --primary-50: #eff6ff;
-  --primary-100: #dbeafe;
-  --primary-500: #3b82f6;
-  --primary-600: #2563eb;
-  --primary-700: #1d4ed8;
-  --primary-900: #1e3a8a;
-
-  --secondary-50: #f8fafc;
-  --secondary-100: #f1f5f9;
-  --secondary-200: #e2e8f0;
-  --secondary-300: #cbd5e1;
-  --secondary-400: #94a3b8;
-  --secondary-500: #64748b;
-  --secondary-600: #475569;
-  --secondary-700: #334155;
-  --secondary-800: #1e293b;
-  --secondary-900: #0f172a;
-
-  --success-50: #f0fdf4;
-  --success-500: #22c55e;
-  --success-600: #16a34a;
-  --success-700: #15803d;
-
-  --warning-50: #fffbeb;
-  --warning-500: #f59e0b;
-  --warning-600: #d97706;
-
-  --error-50: #fef2f2;
-  --error-500: #ef4444;
-  --error-600: #dc2626;
-
-  /* === THEME COLORS === */
-  --bg-primary: #ffffff;
-  --bg-secondary: var(--secondary-50);
-  --bg-tertiary: var(--secondary-100);
-  --bg-card: #ffffff;
-  --bg-elevated: #ffffff;
-
-  --text-primary: var(--secondary-900);
-  --text-secondary: var(--secondary-600);
-  --text-tertiary: var(--secondary-500);
-  --text-inverse: #ffffff;
-
-  --border-light: var(--secondary-200);
-  --border-medium: var(--secondary-300);
-  --border-strong: var(--secondary-400);
-
-  /* === GRADIENTS === */
-  --gradient-primary: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-100) 0%, var(--secondary-200) 100%);
-  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-
-  /* === SHADOWS === */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
-
-  /* === SPACING === */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-
-  /* === TYPOGRAPHY === */
-  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
-
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
-
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-
-  --line-height-tight: 1.25;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
-
-  /* === LAYOUT === */
-  --container-max-width: 1400px;
-  --header-height: 80px;
-  --sidebar-width: 280px;
-  --border-radius-sm: 0.375rem;
-  --border-radius-md: 0.5rem;
-  --border-radius-lg: 0.75rem;
-  --border-radius-xl: 1rem;
-
-  /* === ANIMATIONS === */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 250ms ease-in-out;
-  --transition-slow: 350ms ease-in-out;
-
-  /* === Z-INDEX === */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal: 1040;
-  --z-popover: 1050;
-  --z-tooltip: 1060;
-}
-
 /* === BASE STYLES === */
 * {
   margin: 0;
@@ -143,7 +22,7 @@ body {
 /* === DASHBOARD LAYOUT === */
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-background);
   background-attachment: fixed;
 }
 
@@ -186,14 +65,48 @@ body {
 .dashboard-main {
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: var(--space-8);
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: var(--space-8);
-  margin-top: var(--space-8);
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-8);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.profile-section {
+  grid-column: 2 / 6;
+  grid-row: 1;
+}
+
+.stats-section {
+  grid-column: 8 / 12;
+  grid-row: 1;
+}
+
+/* === ROW 2: FULL-WIDTH DEPLOYMENTS === */
+.deployments-section {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+/* === ROW 3: FULL-WIDTH ANALYTICS === */
+.analytics-section {
+  grid-column: 1 / -1; 
+  grid-row: 3;
+}
+
+/* === ROW 4: SPLIT PROJECTS & ACTIVITY === */
+.projects-section {
+  grid-column: 1 / 7;
+  grid-row: 4;
+}
+
+.activity-section {
+  grid-column: 7 / -1;
+  grid-row: 4;
 }
 
 /* === LOADING & ERROR STATES === */
@@ -288,28 +201,68 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
-/* === SPECIAL LAYOUT OVERRIDES === */
-.analytics-section {
-  grid-column: 1 / -1; /* Full width */
-  max-width: none;
-}
-
-.deployments-section {
-  grid-column: 1 / -1; /* Full width */
-}
 
 /* === RESPONSIVE DESIGN === */
-@media (max-width: 1200px) {
+/* Medium Desktop (992px - 1199px) */
+@media (max-width: 1199px) {
   .dashboard-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    max-width: 1140px;
+    padding: var(--space-6);
     gap: var(--space-6);
   }
   
   .dashboard-main {
     padding: var(--space-6);
   }
+  
+  /* Centering for medium screens */
+  .profile-section {
+    grid-column: 2 / 6;   
+  }
+  
+  .stats-section {
+    grid-column: 8 / 12; 
+  }
 }
 
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(8, 1fr); 
+    max-width: 960px;
+    gap: var(--space-6, 1.25rem);
+    padding: var(--space-6);
+  }
+  
+  .dashboard-main {
+    padding: var(--space-6);
+  }
+  
+  .profile-section {
+    grid-column: 1 / 5;   
+    grid-row: 1;
+  }
+  
+  .stats-section {
+    grid-column: 5 / 9;   
+    grid-row: 1;
+  }
+  
+  .deployments-section,
+  .analytics-section {
+    grid-column: 1 / -1;
+  }
+  
+  .projects-section {
+    grid-column: 1 / 5;
+  }
+  
+  .activity-section {
+    grid-column: 5 / 9;
+  }
+}
+
+/* Mobile Large (768px and below) */
 @media (max-width: 768px) {
   .dashboard-header {
     padding: var(--space-4) var(--space-6);
@@ -321,23 +274,29 @@ body {
   
   .dashboard-grid {
     grid-template-columns: 1fr;
+    max-width: 540px;
     gap: var(--space-4);
+    padding: var(--space-4);
   }
   
   .dashboard-main {
     padding: var(--space-4);
   }
   
+  /* All sections stack vertically */
   .profile-section,
   .stats-section,
   .deployments-section,
   .analytics-section,
   .projects-section,
   .activity-section {
+    grid-column: 1;
+    grid-row: auto;
     padding: var(--space-6);
   }
 }
 
+/* Mobile Small (480px and below) */
 @media (max-width: 480px) {
   .dashboard-header {
     padding: var(--space-4);
@@ -345,6 +304,11 @@ body {
   
   .dashboard-header h1 {
     font-size: var(--font-size-xl);
+  }
+  
+  .dashboard-grid {
+    gap: var(--space-3);
+    padding: var(--space-3);
   }
   
   .dashboard-main {
@@ -359,6 +323,36 @@ body {
   .activity-section {
     padding: var(--space-4);
   }
+}
+
+/* === EXTRAS === */
+
+/* Same section heights in same row */
+.profile-section,
+.stats-section {
+  min-height: 400px;
+}
+
+.projects-section,
+.activity-section {
+  min-height: 300px;
+}
+
+/* Spacing and alignment */
+.dashboard-grid > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Focus states */
+.dashboard-grid > *:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 
+    var(--shadow-lg),
+    0 0 0 2px var(--primary-500);
+  transition: all 0.2s ease;
 }
 
 /* === ANIMATIONS === */
@@ -377,7 +371,7 @@ body {
   to { transform: translateX(0); }
 }
 
-/* Add fade-in animation to sections */
+/* Fade-in animations for sections */
 .profile-section,
 .stats-section,
 .deployments-section,
@@ -387,10 +381,26 @@ body {
   animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Stagger the animations */
+/* Staggered animations */
 .profile-section { animation-delay: 0.1s; }
 .stats-section { animation-delay: 0.2s; }
 .deployments-section { animation-delay: 0.3s; }
 .analytics-section { animation-delay: 0.4s; }
 .projects-section { animation-delay: 0.5s; }
 .activity-section { animation-delay: 0.6s; }
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+@media (prefers-reduced-motion: reduce) {
+  .profile-section,
+  .stats-section,
+  .deployments-section,
+  .analytics-section,
+  .projects-section,
+  .activity-section {
+    animation: none;
+  }
+  
+  .dashboard-grid > *:focus-within {
+    transform: none;
+  }
+}

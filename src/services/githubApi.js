@@ -20,7 +20,7 @@ const handleApiResponse = async (response) => {
 }
 
 export const githubApi = {
-  // Get user profile information
+  // User profile information
   async getUserProfile(username) {
     try {
       const response = await fetch(`${GITHUB_BASE_URL}/users/${username}`)
@@ -31,7 +31,7 @@ export const githubApi = {
     }
   },
 
-  // Get user repositories
+  // User repositories
   async getUserRepos(username, options = {}) {
     const {
       sort = 'updated',
@@ -54,7 +54,7 @@ export const githubApi = {
     }
   },
 
-  // Get user's recent activity/events
+  // User's recent activity/events
   async getUserEvents(username, per_page = 10) {
     try {
       const response = await fetch(`${GITHUB_BASE_URL}/users/${username}/events?per_page=${per_page}`)
@@ -65,7 +65,7 @@ export const githubApi = {
     }
   },
 
-  // Get repository languages
+  // Repository languages
   async getRepoLanguages(username, repoName) {
     try {
       const response = await fetch(`${GITHUB_BASE_URL}/repos/${username}/${repoName}/languages`)
@@ -76,7 +76,7 @@ export const githubApi = {
     }
   },
 
-  // Get user's contribution stats (GraphQL API)
+  // User's contribution stats (GraphQL API)
   async getUserStats(username) {
     try {
       const [profile, repos, events] = await Promise.all([
@@ -96,7 +96,7 @@ export const githubApi = {
         }
       })
 
-      // Count recent commits from events
+      // Recent commits from events
       const recentCommits = events.filter(event => 
         event.type === 'PushEvent' && 
         new Date(event.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
@@ -123,7 +123,7 @@ export const githubApi = {
     }
   },
 
-  // Get trending repositories (using search API)
+  // Get trending repositories (search API)
   async getTrendingRepos(language = '', timeframe = 'week') {
     try {
       const date = new Date()

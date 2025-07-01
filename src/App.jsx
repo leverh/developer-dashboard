@@ -4,6 +4,8 @@ import ActivityFeed from './components/ActivityFeed'
 import ProfileOverview from './components/ProfileOverview'
 import DeploymentOverview from './components/DeploymentOverview'
 import AnalyticsDashboard from './components/AnalyticsDashboard'
+import ThemeMenu from './components/ThemeMenu'
+import ScrollToTop from './components/ScrollToTop'
 import { useGitHub } from './hooks/useGitHub'
 
 function App() {
@@ -12,8 +14,15 @@ function App() {
   
   const { data: githubData, loading, error, refreshData, lastFetch } = useGitHub(username)
 
+
   return (
     <div className="dashboard">
+      {/* Theme Toggle */}
+      <ThemeMenu />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
+      
       <header className="dashboard-header">
         <h1>{appName}</h1>
         <p>Your development command center</p>

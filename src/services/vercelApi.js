@@ -167,7 +167,7 @@ export const vercelApi = {
         deploymentsByProject[projectName].push(deployment)
       })
 
-      // Get project details with recent deployments
+      // Project details with recent deployments
       const projectsWithDeployments = projects.map(project => ({
         ...project,
         recent_deployments: deploymentsByProject[project.name] || []
