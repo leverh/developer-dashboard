@@ -70,6 +70,7 @@ VITE_GITHUB_USERNAME=your-github-username
 # Optional - API Tokens for full usage of features
 VITE_NETLIFY_TOKEN=your-netlify-personal-access-token
 VITE_VERCEL_TOKEN=your-vercel-api-token
+VITE_GITHUB_TOKEN=your-github-api-token  (it'll work without it, but GitHub only allows 60 requets per hour instead of 5000 with the token)
 
 # Optional - App Configuration
 VITE_APP_NAME=Developer Dashboard
