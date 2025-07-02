@@ -82,6 +82,15 @@ VITE_APP_VERSION=1.0.0
 #### GitHub (Public data - no token needed)
 The dashboard works with public GitHub data without authentication.
 
+##### or if going for the over 60 requests per hour:
+1. Go to the [Developer Settings page](https://github.com/settings/apps)
+2. Click "Personal access tokens"
+3. Click "Tokens (classic)"
+4. Click "Generate new token (classic)
+5. Name it "Developer Dashboard"
+6. Choose the scope (public_repo)
+7. Copy the token to your `.env` file
+
 #### Netlify Personal Access Token
 1. Go to [Netlify Personal Access Tokens](https://app.netlify.com/user/applications#personal-access-tokens)
 2. Click "New access token"
@@ -148,7 +157,7 @@ developer-dashboard/
 │   ├── App.jsx             # Main application component
 │   ├── main.jsx            # Application entry point
 │   └── index.css           # Global styles
-├── .env.example            # Environment variables template
+├── .env                    # Environment variables template
 ├── .gitignore
 ├── package.json
 ├── vite.config.js
@@ -255,7 +264,7 @@ This project is licensed under the MIT License. Copy or share - I really don't c
 
 ## 🙏 Acknowledgments
 
-React, Vite, Recharts, GitHub Netlify and Vercel API's.
+React, Vite, Recharts, as well as the GitHub Netlify and Vercel API's - All free to use- let's acknowledge them!
 
 ## Attributions
 
