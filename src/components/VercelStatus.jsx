@@ -152,12 +152,19 @@ const VercelStatus = ({ data, loading, error, onRefresh }) => {
 
                   <div className="deployment-actions">
                     <a 
-                      href={`https://vercel.com/${user?.username}/${deployment.name}`}
+                      href={deployment.url ? `https://${deployment.url}` : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="deployment-link"
+                      onClick={(e) => {
+                        console.log('Deployment object:', deployment)
+                        if (!deployment.url) {
+                          e.preventDefault()
+                          alert('No URL available for this deployment')
+                        }
+                      }}
                     >
-                      View →
+                      View Live →
                     </a>
                   </div>
                 </div>
@@ -226,12 +233,12 @@ const VercelStatus = ({ data, loading, error, onRefresh }) => {
 
                   <div className="project-actions">
                     <a 
-                      href={`https://vercel.com/${user?.username}/${project.name}`}
+                      href="https://vercel.com/dashboard"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="project-link"
                     >
-                      View Project →
+                      Open Dashboard →
                     </a>
                   </div>
                 </div>

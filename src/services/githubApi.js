@@ -1,4 +1,6 @@
+// GitHub API service
 const GITHUB_BASE_URL = 'https://api.github.com'
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN
 
 class GitHubApiError extends Error {
   constructor(message, status) {
@@ -6,6 +8,20 @@ class GitHubApiError extends Error {
     this.name = 'GitHubApiError'
     this.status = status
   }
+}
+
+const getAuthHeaders = () => {
+  const headers = {
+    'Accept': 'application/vnd.github.v3+json',
+    'User-Agent': 'Developer-Dashboard'
+  }
+  
+  // Add authorization header if token is available
+  if (GITHUB_TOKEN) {
+    headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`
+  }
+  
+  return headers
 }
 
 const handleApiResponse = async (response) => {
@@ -20,10 +36,12 @@ const handleApiResponse = async (response) => {
 }
 
 export const githubApi = {
-  // User profile information
+  // Get user profile information
   async getUserProfile(username) {
     try {
-      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}`)
+      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}`, {
+        headers: getAuthHeaders()
+      })
       return await handleApiResponse(response)
     } catch (error) {
       console.error('Error fetching user profile:', error)
@@ -31,7 +49,7 @@ export const githubApi = {
     }
   },
 
-  // User repositories
+  // Get user repositories
   async getUserRepos(username, options = {}) {
     const {
       sort = 'updated',
@@ -46,7 +64,9 @@ export const githubApi = {
         type
       })
       
-      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}/repos?${params}`)
+      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}/repos?${params}`, {
+        headers: getAuthHeaders()
+      })
       return await handleApiResponse(response)
     } catch (error) {
       console.error('Error fetching repositories:', error)
@@ -54,10 +74,12 @@ export const githubApi = {
     }
   },
 
-  // User's recent activity/events
+  // Get user's recent activity/events
   async getUserEvents(username, per_page = 10) {
     try {
-      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}/events?per_page=${per_page}`)
+      const response = await fetch(`${GITHUB_BASE_URL}/users/${username}/events?per_page=${per_page}`, {
+        headers: getAuthHeaders()
+      })
       return await handleApiResponse(response)
     } catch (error) {
       console.error('Error fetching user events:', error)
@@ -65,10 +87,12 @@ export const githubApi = {
     }
   },
 
-  // Repository languages
+  // Get repository languages
   async getRepoLanguages(username, repoName) {
     try {
-      const response = await fetch(`${GITHUB_BASE_URL}/repos/${username}/${repoName}/languages`)
+      const response = await fetch(`${GITHUB_BASE_URL}/repos/${username}/${repoName}/languages`, {
+        headers: getAuthHeaders()
+      })
       return await handleApiResponse(response)
     } catch (error) {
       console.error('Error fetching repository languages:', error)
@@ -76,7 +100,7 @@ export const githubApi = {
     }
   },
 
-  // User's contribution stats (GraphQL API)
+  // Get user's contribution stats
   async getUserStats(username) {
     try {
       const [profile, repos, events] = await Promise.all([
@@ -96,7 +120,7 @@ export const githubApi = {
         }
       })
 
-      // Recent commits from events
+      // Count recent commits from events
       const recentCommits = events.filter(event => 
         event.type === 'PushEvent' && 
         new Date(event.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
@@ -123,7 +147,7 @@ export const githubApi = {
     }
   },
 
-  // Get trending repositories (search API)
+  // Get trending repositories
   async getTrendingRepos(language = '', timeframe = 'week') {
     try {
       const date = new Date()
@@ -138,7 +162,9 @@ export const githubApi = {
         per_page: '10'
       })
 
-      const response = await fetch(`${GITHUB_BASE_URL}/search/repositories?${params}`)
+      const response = await fetch(`${GITHUB_BASE_URL}/search/repositories?${params}`, {
+        headers: getAuthHeaders()
+      })
       const data = await handleApiResponse(response)
       return data.items
     } catch (error) {
