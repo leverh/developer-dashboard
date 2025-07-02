@@ -1,6 +1,6 @@
 # Developer Dashboard
 
-A comprehensive developer dashboard that aggregates and visualizes your development activity across multiple platforms. Built with React, Vite, and CSS. This dashboard provides real-time insights into your GitHub activity, deployment status, productivity metrics, etc.
+A developer dashboard that aggregates and visualizes your development activity across multiple platforms. Built with React, Vite, and CSS. The dashboard provides real-time insights into your GitHub activity, deployment status, productivity metrics, etc.
 
 ![Developer Dashboard](https://img.shields.io/badge/React-19.0+-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-7.0+-green.svg)
@@ -102,7 +102,7 @@ yarn dev
 ```
 
 ### 6. **Important**
-**DON'T FORGET TO ADD THE MODIFIED `.env` FILE TO YOUR `.gitignore` FILE**
+**DON'T FORGET TO ADD THE `.env` FILE TO YOUR `.gitignore` FILE**
 
 Open [http://localhost:5173](http://localhost:5173) to view the dashboard.
 
@@ -164,10 +164,11 @@ developer-dashboard/
 | `VITE_GITHUB_USERNAME` | Yes | Your GitHub username for fetching repositories and activity |
 | `VITE_NETLIFY_TOKEN` | No | Personal access token for Netlify deployment data |
 | `VITE_VERCEL_TOKEN` | No | API token for Vercel deployment data |
+| `VITE_GITHUB_TOKEN` | No | GitHub personal access token to allow 5000 requests an hour |
 | `VITE_APP_NAME` | No | Custom name for your dashboard (default: "Developer Dashboard") |
 | `VITE_APP_VERSION` | No | Version number for your dashboard (default: "1.0.0") |
 
-### API Rate Limits - At The Time Of Deployment
+### API Rate Limits - At The Time Of Writing This
 
 - **GitHub**: 60 requests/hour without authentication, 5000/hour with token
 - **Netlify**: 500 requests/hour with personal access token
