@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 const ActivityFeed = ({ data }) => {
+  const [showAll, setShowAll] = useState(false)
+
   const formatActivity = (event) => {
     const timeAgo = getTimeAgo(event.created_at)
     
@@ -100,9 +104,9 @@ const ActivityFeed = ({ data }) => {
     return eventDate.toLocaleDateString()
   }
 
-  // Use real GitHub or placeholder
+  // Use real GitHub events or placeholder
   const activities = data?.events 
-    ? data.events.slice(0, 10).map(formatActivity)
+    ? data.events.map(formatActivity)
     : [
         {
           icon: '📝',
@@ -113,12 +117,15 @@ const ActivityFeed = ({ data }) => {
         }
       ]
 
+  // Show limited or all activities based on state
+  const displayedActivities = showAll ? activities : activities.slice(0, 10)
+
   return (
     <div className="activity-feed">
       <h2>Recent Activity</h2>
       
       <div className="activity-list">
-        {activities.map((activity, index) => (
+        {displayedActivities.map((activity, index) => (
           <div key={index} className={`activity-item ${activity.type}`}>
             <div className="activity-icon">
               {activity.icon}
@@ -138,8 +145,14 @@ const ActivityFeed = ({ data }) => {
       
       {data?.events && data.events.length > 10 && (
         <div className="activity-actions">
-          <button className="btn-link">
-            View All Activity ({data.events.length} total)
+          <button 
+            className="btn-link"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll 
+              ? `Show Less` 
+              : `View All Activity (${activities.length} total)`
+            }
           </button>
         </div>
       )}

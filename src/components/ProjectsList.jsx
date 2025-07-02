@@ -173,7 +173,7 @@ const ProjectsList = ({ data }) => {
         </a>
         {data.profile?.html_url && (
           <a 
-            href={`${data.profile.html_url}/repositories/new`}
+            href="https://github.com/new"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
